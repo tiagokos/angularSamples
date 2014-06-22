@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+	<title>Simple App</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+</head>
+<body>
+	<form name="signup_form" ng-controller="FormController" ng-submit="submitForm()" novalidate>
+		<div ng-repeat ="field in fields" ng-form="signup_form_input">
+			<input type="text" name="dynamic_input" ng-required="field.isRequired" ng-model="field.name" placeholder="{{ field.placeholder }}" />
+			<div ng-show="signup_form_input.dynamic_input.$dirty && signup_form_input.dynamic_input.$invalid">
+				<span class="error" ng-show="signup_form_input.dynamic_input.$error.required">
+				The field is required.
+				</span>
+			</div>
+		</div>
+		<button type="submit" ng-disabled="signup_form.$invalid">Submit All </button>
+	</form>
+	<script type="text/stylesheet">
+		input.ng-invalid {
+			border: 1px solid red;
+		}
+		input.ng-valid {
+			border: 1px solid green;
+		}
+	</script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
